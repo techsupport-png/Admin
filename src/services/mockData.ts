@@ -1,4 +1,56 @@
-import { College, Program, Application } from '@/types'
+import { College, Program, Application, User } from '@/types'
+
+// Mock users for testing login
+export const mockUsers = [
+  {
+    id: '1',
+    email: 'admin@test.com',
+    password: 'admin123',
+    name: 'Admin User',
+    role: 'admin' as const,
+  },
+  {
+    id: '2',
+    email: 'college@test.com',
+    password: 'college123',
+    name: 'College Manager',
+    role: 'college' as const,
+  },
+  {
+    id: '3',
+    email: 'franchise@test.com',
+    password: 'franchise123',
+    name: 'Franchise Owner',
+    role: 'franchise' as const,
+  },
+  {
+    id: '4',
+    email: 'student@test.com',
+    password: 'student123',
+    name: 'Student User',
+    role: 'student' as const,
+  },
+]
+
+// Mock login function
+export function mockLogin(email: string, password: string): Promise<{ user: User; token: string }> {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const user = mockUsers.find((u) => u.email === email && u.password === password)
+
+      if (user) {
+        // Remove password from response
+        const { password: _, ...userWithoutPassword } = user
+        resolve({
+          user: userWithoutPassword as User,
+          token: `mock-token-${user.id}-${Date.now()}`,
+        })
+      } else {
+        reject({ message: 'Invalid email or password' })
+      }
+    }, 500) // Simulate network delay
+  })
+}
 
 const samplePrograms: Program[] = [
   { id: 'p1', name: 'BSc Computer Science', description: 'CS program', duration: '3 years', fees: 5000 },

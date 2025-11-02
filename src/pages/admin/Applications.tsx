@@ -10,7 +10,7 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
-import Button from '@mui/material/Button'
+// Using custom buttons for cleaner, modern action styling
 
 const AdminApplications: React.FC = () => {
   const [applications, setApplications] = useState<Application[]>([])
@@ -80,49 +80,63 @@ const AdminApplications: React.FC = () => {
 
   return (
     <div>
-      <Typography variant="h4" gutterBottom>
+      <Typography variant="h4" gutterBottom className="dark:text-white!">
         Applications
       </Typography>
 
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} sx={{ backgroundColor: '#F8FAFC' }} className="dark:bg-gray-800!">
         <Table>
           <TableHead>
-            <TableRow>
-              <TableCell>Student ID</TableCell>
-              <TableCell>College</TableCell>
-              <TableCell>Program</TableCell>
-              <TableCell>Status</TableCell>
-              <TableCell>Submitted</TableCell>
-              <TableCell>Actions</TableCell>
+            <TableRow className="bg-[#F1F5F9] dark:bg-gray-700">
+              <TableCell className="dark:text-[#CBD5E1]!"><span>Student ID</span></TableCell>
+              <TableCell className="dark:text-[#CBD5E1]!"><span>College</span></TableCell>
+              <TableCell className="dark:text-[#CBD5E1]!"><span>Program</span></TableCell>
+              <TableCell className="dark:text-[#CBD5E1]!"><span>Status</span></TableCell>
+              <TableCell className="dark:text-[#CBD5E1]!"><span>Submitted</span></TableCell>
+              <TableCell className="dark:text-[#CBD5E1]!"><span>Actions</span></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {loading ? (
               <TableRow>
-                <TableCell colSpan={6}>Loading...</TableCell>
+                <TableCell colSpan={6} className="dark:text-white!">Loading...</TableCell>
               </TableRow>
             ) : error ? (
               <TableRow>
-                <TableCell colSpan={6}>{error}</TableCell>
+                <TableCell colSpan={6} className="dark:text-white!">{error}</TableCell>
               </TableRow>
             ) : (
               applications.map((a) => (
-                <TableRow key={a.id}>
-                  <TableCell>{a.studentId}</TableCell>
-                  <TableCell>{collegesMap[a.collegeId]?.name ?? a.collegeId}</TableCell>
-                  <TableCell>{a.programId}</TableCell>
-                  <TableCell>{a.status}</TableCell>
-                  <TableCell>{new Date(a.submittedAt).toLocaleDateString()}</TableCell>
-                  <TableCell>
-                    <Button size="small" onClick={() => updateStatus(a.id, 'shortlisted')}>
-                      Shortlist
-                    </Button>
-                    <Button size="small" color="error" onClick={() => updateStatus(a.id, 'rejected')}>
-                      Reject
-                    </Button>
-                    <Button size="small" onClick={() => updateStatus(a.id, 'waitlisted')}>
-                      Waitlist
-                    </Button>
+                <TableRow key={a.id} className="hover:bg-[#F1F5F9] dark:hover:bg-gray-700">
+                  <TableCell className="dark:text-[#94A3B8]!">{a.studentId}</TableCell>
+                  <TableCell className="dark:text-white!">{collegesMap[a.collegeId]?.name ?? a.collegeId}</TableCell>
+                  <TableCell className="dark:text-white!">{a.programId}</TableCell>
+                  <TableCell className="dark:text-[#94A3B8]!">{a.status}</TableCell>
+                  <TableCell className="dark:text-[#94A3B8]!">{new Date(a.submittedAt).toLocaleDateString()}</TableCell>
+                  <TableCell className="dark:text-white!">
+                    <div className="flex items-center gap-6">
+                      <button
+                        type="button"
+                        onClick={() => updateStatus(a.id, 'shortlisted')}
+                        className="uppercase font-semibold tracking-wide text-[#ff6b35] hover:text-[#ff8c5a] focus:outline-none focus:ring-2 focus:ring-[#ff6b35]/40 rounded-sm transition-colors"
+                      >
+                        Shortlist
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => updateStatus(a.id, 'rejected')}
+                        className="uppercase font-semibold tracking-wide text-red-500 hover:text-red-400 focus:outline-none focus:ring-2 focus:ring-red-500/30 rounded-sm transition-colors"
+                      >
+                        Reject
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => updateStatus(a.id, 'waitlisted')}
+                        className="uppercase font-semibold tracking-wide text-amber-500 hover:text-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-500/30 rounded-sm transition-colors"
+                      >
+                        Waitlist
+                      </button>
+                    </div>
                   </TableCell>
                 </TableRow>
               ))
