@@ -12,8 +12,8 @@ interface AuthStore {
   checkSession: () => void;
 }
 
-// Session timeout: 30 minutes (in milliseconds)
-const SESSION_TIMEOUT = 30 * 60 * 1000;
+// Session timeout (milliseconds). Exported so UI helpers can schedule timers accurately.
+export const SESSION_TIMEOUT = 15 * 60 * 1000; // 15 minutes
 
 // Helper to load user from localStorage
 const loadStoredUser = (): User | null => {
@@ -62,7 +62,7 @@ const useAuthStore = create<AuthStore>((set, get) => ({
     if (user && lastActivity) {
       const now = Date.now();
       const elapsed = now - lastActivity;
-      if (elapsed > SESSION_TIMEOUT) {
+      if (elapsed >= SESSION_TIMEOUT) {
         console.log('⏱️ Session expired - logging out');
         logout();
       }

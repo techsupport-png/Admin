@@ -8,8 +8,6 @@ import {
   BarChart3,
   Settings,
   LogOut,
-  Building2,
-  Store,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import useAuthStore from '@/store/authStore'
@@ -61,20 +59,7 @@ const getNavItems = (role: string): NavItem[] => {
   }
 }
 
-const getRoleIcon = (role: string) => {
-  switch (role) {
-    case 'admin':
-      return <Settings className="h-5 w-5" />
-    case 'college':
-      return <Building2 className="h-5 w-5" />
-    case 'franchise':
-      return <Store className="h-5 w-5" />
-    case 'student':
-      return <Users className="h-5 w-5" />
-    default:
-      return null
-  }
-}
+// Role icon badge replaced by static brand logo above
 
 export const Sidebar: FC<SidebarProps> = ({ role = 'admin' }) => {
   const location = useLocation()
@@ -92,11 +77,13 @@ export const Sidebar: FC<SidebarProps> = ({ role = 'admin' }) => {
       {/* Logo & Brand */}
       <div className="border-b dark:border-gray-700 p-6">
         <div className="flex items-center gap-3">
-          <div className="rounded-lg bg-[#ff6b35] p-2 text-white">
-            {getRoleIcon(role)}
-          </div>
+          <img
+            src="/img/Original_Icon.svg"
+            alt="Bridge Bound Academics logo"
+            className="h-10 w-10 rounded-lg"
+          />
           <div>
-            <h2 className="text-xl font-bold text-gray-900 dark:text-white">BridgeBound</h2>
+            <h2 className="text-xl font-bold text-gray-900 dark:text-white">Bridge Bound Academics</h2>
             <p className="text-xs text-gray-500 dark:text-gray-400 capitalize">{role} Portal</p>
           </div>
         </div>

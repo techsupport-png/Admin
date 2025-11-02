@@ -58,8 +58,8 @@ export function initTheme() {
         useThemeStore.getState().apply('system')
       }
     }
-    if ('addEventListener' in mq) mq.addEventListener('change', handler)
-    else // Safari
-      mq.addListener(handler)
+    if (typeof mq.addEventListener === 'function') mq.addEventListener('change', handler)
+    else
+      (mq as any).addListener?.(handler)
   }
 }

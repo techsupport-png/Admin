@@ -54,28 +54,30 @@ const LoginPage: FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-orange-50 via-orange-100 to-orange-200 p-4">
+  <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-orange-50 via-orange-100 to-orange-200 p-4">
       <div className="w-full max-w-md">
         <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
-          <div className="bg-gradient-to-r from-orange-600 to-orange-500 p-8 text-center">
-            <h1 className="text-3xl font-bold text-white mb-2">BridgeBound Portal</h1>
+          <div className="bg-linear-to-r from-orange-600 to-orange-500 p-8 text-center">
+            <img
+              src="/img/Original_Icon.svg"
+              alt="Bridge Bound Academics logo"
+              className="h-12 w-12 mx-auto mb-3 rounded-lg"
+            />
+            <h1 className="text-3xl font-bold text-white mb-2">Bridge Bound Academics Portal</h1>
             <p className="text-orange-100">Sign in to your account</p>
           </div>
 
           <div className="p-8">
             <div className="mb-6 bg-orange-50 border-l-4 border-orange-500 p-4 rounded-r-lg">
               <div className="flex items-start">
-                <svg className="h-5 w-5 text-orange-600 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <svg className="h-5 w-5 text-orange-600 mt-0.5 mr-3 shrink-0" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
                 </svg>
                 <div className="text-sm">
                   <p className="font-semibold text-orange-900 mb-2">Test Credentials:</p>
                   <div className="text-orange-800 space-y-1">
                     <p>• <span className="font-medium">Admin:</span> admin@test.com / admin123</p>
-                    <p>• <span className="font-medium">College:</span> college@test.com / college123</p>
-                    <p>• <span className="font-medium">Franchise:</span> franchise@test.com / franchise123</p>
-                    <p>• <span className="font-medium">Student:</span> student@test.com / student123</p>
-                  </div>
+                    </div>
                 </div>
               </div>
             </div>
@@ -126,7 +128,7 @@ const LoginPage: FC = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-gradient-to-r from-orange-600 to-orange-500 text-white py-3 px-4 rounded-lg font-semibold hover:from-orange-700 hover:to-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all transform hover:scale-[1.02] active:scale-[0.98]"
+                className="w-full bg-linear-to-r from-orange-600 to-orange-500 text-white py-3 px-4 rounded-lg font-semibold hover:from-orange-700 hover:to-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all transform hover:scale-[1.02] active:scale-[0.98]"
               >
                 {loading ? (
                   <span className="flex items-center justify-center">
@@ -144,7 +146,7 @@ const LoginPage: FC = () => {
           </div>
 
           <div className="bg-gray-50 px-8 py-4 text-center">
-            <p className="text-xs text-gray-600">© 2025 BridgeBound. All rights reserved.</p>
+            <p className="text-xs text-gray-600">© 2025 Bridge Bound Academics. All rights reserved.</p>
           </div>
         </div>
       </div>
